@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<title>Akirachix</title>
+
+	<style type="text/css">
+		h3{
+color: black;
+text-align: center;
+		}
+	</style>
+<body>
+
+<h2>Course Registration</h2>
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+<input type="submit">	
+</form>
+
+</body>
+</html>
