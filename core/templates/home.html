@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+	body{
+		background-color: cyan;
+		font-family: myriad pro;
+		text-align: center;
+	   h1{}
+	}
+	
+
+</style>
+<title>KARIBU</title>
+<body>
+	
+	<h1>WELCOME TO THE HOME OF HIDDEN TREASURE</h1>
+	{% if user.is_authenticated %}
+	    <h4>Welcome {{user.username}}</h4>
+	 {% else %}  
+	    <h4>Welcome guest </h4>
+	    <h5>please <a href="/accounts/login"><button>login</button></a></h5>
+	    <h5>Or <a href="/accounts/register"><button>register</button></a></h5>
+
+	{% endif %} 
+	<!-- <h3>welcome <a href="/accounts/login"></a></h3> -->
+</body>
+</html>

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,5 +23,7 @@ urlpatterns = [
     path("teacher/",include("teacher.urls")),
     path("course/",include("course.urls")),
     path("api/",include("api.urls")),  
+    path("",include("core.urls")),
+    path("accounts/",include("registration.backends.default.urls")),
     
 ]

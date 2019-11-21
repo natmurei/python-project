@@ -5,7 +5,7 @@ class Course(models.Model):
 	Duration_in_months=models.SmallIntegerField()
 	course_number=models.CharField(max_length=50)
 	Description=models.TextField(max_length=50)
-	teachers=models.ForeignKey(Teacher,on_delete=models.PROTECT)
+	teachers=models.ForeignKey(Teacher,on_delete=models.PROTECT,blank=True)
 	def __str__(self):
 		return self.Name
 # Create your models here.

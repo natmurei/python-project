@@ -2,15 +2,17 @@ from django.shortcuts import render
 from .forms import StudentForm
 from .models import Student
 from django.shortcuts import redirect
+from django.http import HttpResponseBadRequest
 
 def add_student(request):
 	if request.method=="POST":
 		form=StudentForm(request.POST)
 		if form.is_valid():
 			form.save()
-		return redirect("list_student")
+		else:
+			return HttpResponseBadRequest()
 	else:
-	    form=StudentForm()
+		form=StudentForm()
 	return render(request,"add_student.html",{"form":form})
 
 def list_student(request):
@@ -33,4 +35,4 @@ def edit_student(request,pk):
 		form=StudentForm(instance=student)
 	return render(request,"edit_student.html",{"form":form})
 
-# Create your views here.
+

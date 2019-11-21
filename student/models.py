@@ -1,5 +1,7 @@
 from django.db import models
 from course.models import Course
+import datetime 
+from django.core.exceptions import ValidationError
 
 class Student(models.Model):
 	first_name=models.CharField(max_length=50)
@@ -12,10 +14,29 @@ class Student(models.Model):
 	guardian_phone=models.EmailField(max_length=50)
 	id_number=models.IntegerField()
 	date_joined=models.DateField()
-	course=models.ManyToManyField(Course)
+	course=models.ManyToManyField(Course,blank=True)
 	
 
 	def __str__(self):
 		return self.first_name+" "+self.last_name 
 
-# Create your models here.
+	def full_name(self):
+		return "{} {}".format( self.first_name,self.last_name)
+
+	def get_age(self):
+		today = datetime.date.today()
+		return today.year-self.date_of_birth.year
+	age = property(get_age)    
+
+	def clean(self):
+		age=self.age
+		if age<18 or age>30:
+			raise ValidationError("person above the age of 18 and below 30")
+		return age	
+
+
+
+		
+
+
+
